@@ -32,7 +32,7 @@
             "windows": {
                 "command": "${workspaceFolder}/lab1.exe"
             },
-            "args": ["${workspaceFolder}/example.txt"],
+            "args": ["${workspaceFolder}/test_example.txt"],
             "dependsOn": "Build lab1",
             "options": {
                 "cwd": "${workspaceFolder}"

@@ -48,7 +48,7 @@ The included inputs illustrate the main rules:
 
 | File | What it demonstrates | Winner |
 | --- | --- | --- |
-| `example.txt` | Vote transfers change the initial leader | B |
+| `test_example.txt` | Vote transfers change the initial leader | B |
 | `test_tie_first_round.txt` | Declaration order breaks a first-round tie | A |
 | `test_tie_backward.txt` | Earlier rounds break later ties | A |
 | `test_exhausted.txt` | Exhausted ballots reduce the majority threshold | C |
@@ -59,10 +59,10 @@ With a C++17 compiler available on `PATH`:
 
 ```sh
 g++ -std=c++17 -Wall -Wextra -Wpedantic -g main.cpp utils.cpp -o lab1
-./lab1 example.txt
+./lab1 test_example.txt
 ```
 
-On Windows, use `-o lab1.exe` and run `.\lab1.exe example.txt`.
+On Windows, use `-o lab1.exe` and run `.\lab1.exe test_example.txt`.
 In VS Code, **Ctrl+Shift+B** builds both source files; the **Run lab1 example**
 task builds and runs the example.
 
