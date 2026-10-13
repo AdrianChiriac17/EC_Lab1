@@ -39,7 +39,7 @@ struct RoundTotals
 
 using VoteHistory = vector<vector<int>>;
 
-// Input parsing helpers.
+// Read candidate names in declaration order and add them to the election.
 void read_candidates(istringstream& words, Election& election)
 {
     string name;
@@ -53,6 +53,7 @@ void read_candidates(istringstream& words, Election& election)
     }
 }
 
+// Read one ballot's voter count and ranked candidate indices; reject invalid input.
 bool read_ballot(istringstream& words, string word, Election& election)
 {
     Ballot ballot;
@@ -104,7 +105,7 @@ bool read_ballot(istringstream& words, string word, Election& election)
     return true;
 }
 
-// Round counting and output.
+// Count votes for each ballot's first remaining candidate; track exhausted votes.
 RoundTotals tabulate(Election& election)
 {
     for (auto& candidate : election.candidates)
@@ -131,6 +132,7 @@ RoundTotals tabulate(Election& election)
     return totals;
 }
 
+// Display this round's vote counts and valid/exhausted totals.
 void print_round(const Election& election, const RoundTotals& totals,
                  int round, ostream& output)
 {
@@ -145,6 +147,7 @@ void print_round(const Election& election, const RoundTotals& totals,
     output << "  exhausted: " << totals.exhausted << ", valid: " << totals.valid << '\n';
 }
 
+// Decide whether anyone has more than half the valid votes; print the winner if so.
 bool print_winner(const Election& election, int valid, ostream& output)
 {
     for (const auto& candidate : election.candidates)
@@ -159,7 +162,7 @@ bool print_winner(const Election& election, int valid, ostream& output)
     return false;
 }
 
-// Elimination and tie-breaking.
+// Decide whether a loses a tie to b using earlier rounds, then the larger name.
 bool loses_tie(int a, int b, const Election& election, const VoteHistory& history)
 {
     // Compare previous rounds, starting with the most recent.
@@ -174,6 +177,7 @@ bool loses_tie(int a, int b, const Election& election, const VoteHistory& histor
     return election.candidates[a].name > election.candidates[b].name;
 }
 
+// Choose the candidate to eliminate: fewest votes, with ties resolved by loses_tie().
 int find_loser(const Election& election, const VoteHistory& history)
 {
     int loser = -1;
@@ -195,7 +199,7 @@ int find_loser(const Election& election, const VoteHistory& history)
 }
 } // namespace
 
-// Read the election from a file or standard input.
+// Read the election line by line, skipping comments and blanks; parse names and ballots.
 bool read_input(istream& input, Election& election)
 {
     string line;
@@ -219,7 +223,7 @@ bool read_input(istream& input, Election& election)
     return true;
 }
 
-// Coordinate the runoff rounds.
+// Repeat counting and winner checks; save history and eliminate the chosen loser.
 void run_election(Election& election, ostream& output)
 {
     VoteHistory history;
@@ -250,7 +254,7 @@ void run_election(Election& election, ostream& output)
     }
 }
 
-// Program entry point.
+// Open the input file (or use standard input), load the election, and start the runoffs.
 int main(int argc, char* argv[])
 {
     ifstream file;
