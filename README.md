@@ -61,15 +61,16 @@ The included inputs illustrate the main rules:
 With a C++17 compiler available on `PATH`:
 
 ```sh
-g++ -std=c++17 -Wall -Wextra -Wpedantic -g main.cpp utils.cpp -o lab1
+g++ -std=c++17 -Wall -Wextra -Wpedantic -g main.cpp -o lab1
 ./lab1 test_example.txt
 ```
 
 On Windows, use `-o lab1.exe` and run `.\lab1.exe test_example.txt`.
-In VS Code, **Ctrl+Shift+B** builds both source files; the **Run lab1 example**
+In VS Code, **Ctrl+Shift+B** builds the program; the **Run lab1 example**
 task builds and runs the example.
 
-`main.cpp` handles file selection and starts the election. `utils.h` declares
-the candidate, ballot, and election data types, and `utils.cpp` handles parsing,
-counting, tie-breaking, and results. Election data uses `std::vector` rather than
-fixed arrays or global state.
+The program is self-contained in `main.cpp` for single-file submission. It keeps
+separate structs and functions for election data, input parsing, counting,
+tie-breaking, and results, with a small `main()` handling file selection and
+starting the election. Election data uses `std::vector` rather than fixed arrays
+or global state.
