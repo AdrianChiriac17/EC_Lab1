@@ -12,6 +12,7 @@
                 "-Wpedantic",
                 "-g",
                 "${workspaceFolder}/main.cpp",
+                "${workspaceFolder}/utils.cpp",
                 "-o",
                 "${workspaceFolder}/lab1"
             ],
