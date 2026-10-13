@@ -136,7 +136,7 @@ bool print_winner(const Election& election, int valid, ostream& output)
     return false;
 }
 
-bool loses_tie(int a, int b, const VoteHistory& history)
+bool loses_tie(int a, int b, const Election& election, const VoteHistory& history)
 {
     // Compare previous rounds, starting with the most recent.
     for (auto round = history.rbegin(); round != history.rend(); ++round)
@@ -146,7 +146,8 @@ bool loses_tie(int a, int b, const VoteHistory& history)
             return (*round)[a] < (*round)[b];
         }
     }
-    return a > b; // Always tied: the candidate declared last loses.
+    // Always tied: eliminate the lexicographically larger name.
+    return election.candidates[a].name > election.candidates[b].name;
 }
 
 int find_loser(const Election& election, const VoteHistory& history)
@@ -161,7 +162,7 @@ int find_loser(const Election& election, const VoteHistory& history)
         }
         if (loser == -1 || candidate.votes < election.candidates[loser].votes ||
             (candidate.votes == election.candidates[loser].votes &&
-             loses_tie(static_cast<int>(i), loser, history)))
+             loses_tie(static_cast<int>(i), loser, election, history)))
         {
             loser = static_cast<int>(i);
         }

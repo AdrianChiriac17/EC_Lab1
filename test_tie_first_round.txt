@@ -1,6 +1,6 @@
 # Tie for last place in round 1: no earlier round exists,
-# so the candidate listed last (D) is eliminated.
-candidates: A, B, C, D
+# so the lexicographically larger candidate (D) is eliminated, despite being listed first.
+candidates: D, A, B, C
 5: A > B
 4: B > A
 3: C > D

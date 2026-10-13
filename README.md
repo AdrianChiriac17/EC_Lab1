@@ -18,7 +18,9 @@ If no valid votes remain, the election ends without a winner.
 For a tie in last place, compare the tied candidates' vote totals in previous
 rounds, starting with the most recent. The candidate with fewer votes in the first
 round where they differ is eliminated. If they have always been tied (including
-a tie in the first round), eliminate the candidate listed last in `candidates:`.
+a tie in the first round), eliminate the candidate with the lexicographically
+larger name, regardless of declaration order. For example, D is eliminated rather
+than B. Names use the case-sensitive ordering of C++ strings.
 Exactly one candidate is eliminated per round.
 
 ## Input and example
@@ -49,8 +51,9 @@ The included inputs illustrate the main rules:
 | File | What it demonstrates | Winner |
 | --- | --- | --- |
 | `test_example.txt` | Vote transfers change the initial leader | B |
-| `test_tie_first_round.txt` | Declaration order breaks a first-round tie | A |
+| `test_tie_first_round.txt` | Name order breaks a first-round tie | A |
 | `test_tie_backward.txt` | Earlier rounds break later ties | A |
+| `test_tie_lexicographic.txt` | Name order breaks a tie that persists across rounds | A |
 | `test_exhausted.txt` | Exhausted ballots reduce the majority threshold | C |
 
 ## Build and run
