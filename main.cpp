@@ -11,8 +11,8 @@
 //        candidate with fewer votes in the first round where they differ;
 //     2. if they were always tied, eliminate the one listed last in 'candidates:'.
 //
-// Build: g++ -std=c++17 -Wall -Wextra -Wpedantic -o lab1.exe main.cpp
-// Run: ./lab1.exe example.txt
+// Build: g++ -std=c++17 -Wall -Wextra -Wpedantic -o lab1 main.cpp
+// Run: ./lab1 example.txt (Windows: ./lab1.exe example.txt)
 
 #include <fstream>
 #include <iostream>

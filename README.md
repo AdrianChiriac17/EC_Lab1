@@ -6,22 +6,21 @@ remaining valid votes. Ties use earlier rounds, then candidate declaration order
 
 ## Windows setup
 
-Install GCC/G++ using MSYS2 UCRT64 and open this folder in VS Code with Microsoft's
-C/C++ extension. The checked-in editor configuration expects the compiler at
-`C:/msys64/ucrt64/bin/g++.exe`; update the paths in `.vscode/` if MSYS2 is installed
-elsewhere. Standard-library include directories are discovered from the compiler.
+In the MSYS2 **UCRT64** terminal, install GCC/G++:
 
-After opening the project or changing settings, run **Developer: Reload Window**
-and open a new terminal to pick up the UCRT64 and Git paths. If include errors
-remain, run **C/C++: Reset IntelliSense Database** and select **MSYS2 UCRT64** via
-**C/C++: Select a Configuration**.
+```sh
+pacman -S --needed mingw-w64-ucrt-x86_64-gcc
+```
 
-Press **Ctrl+Shift+B** to build, or use **Terminal: Run Task** and select
-**Run lab1 example** to build and run the example.
+Add your MSYS2 installation's `ucrt64\bin` directory to your Windows user `PATH`
+in **Environment Variables** (for example, `C:\msys64\ucrt64\bin`). This lets
+Windows find both `g++` and its runtime DLLs. Fully restart VS Code and open a new
+terminal after changing `PATH`.
 
-In a new VS Code PowerShell terminal:
+From the repository folder in PowerShell:
 
 ```powershell
+g++ --version
 g++ -std=c++17 -Wall -Wextra -Wpedantic -g main.cpp -o lab1.exe
 .\lab1.exe example.txt
 .\lab1.exe test_tie_first_round.txt
@@ -29,10 +28,45 @@ g++ -std=c++17 -Wall -Wextra -Wpedantic -g main.cpp -o lab1.exe
 .\lab1.exe test_exhausted.txt
 ```
 
-The expected winners are B, A, A, and C respectively. The executable needs the
-UCRT64 `bin` directory on `PATH` for its runtime DLLs; the VS Code tasks and new
-integrated terminals include this automatically. These settings apply to this
-project and do not change the system-wide Windows `PATH`.
+## Linux Mint / Ubuntu setup
+
+Install the standard compiler tools:
+
+```sh
+sudo apt update
+sudo apt install build-essential
+```
+
+From the repository folder:
+
+```sh
+g++ --version
+g++ -std=c++17 -Wall -Wextra -Wpedantic -g main.cpp -o lab1
+./lab1 example.txt
+./lab1 test_tie_first_round.txt
+./lab1 test_tie_backward.txt
+./lab1 test_exhausted.txt
+```
+
+Both platforms use the same C++17 source. The expected winners for these four
+inputs are B, A, A, and C respectively. Generated executables are ignored by Git.
+
+## VS Code (Windows and Linux)
+
+Open this repository folder and install Microsoft's **C/C++** extension. The
+checked-in configuration finds `g++` on `PATH` and uses `${workspaceFolder}` for
+project paths, so it works regardless of where the compiler or repository is
+installed. Standard-library include directories are discovered from the compiler.
+VS Code automatically selects the `Win32` or `Linux` IntelliSense configuration.
+
+Press **Ctrl+Shift+B** to build, or use **Terminal: Run Task** and select
+**Run lab1 example** to build and run the example. The build produces `lab1.exe`
+on Windows and `lab1` on Linux.
+
+If `<iostream>` or other standard headers are underlined, first check that
+`g++ --version` works in a new terminal, then run **Developer: Reload Window**
+and **C/C++: Reset IntelliSense Database**. Use **C/C++: Select a Configuration**
+to select your platform if needed.
 
 ## Input format
 
