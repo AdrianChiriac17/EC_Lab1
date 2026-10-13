@@ -1,0 +1,6 @@
+# Ties for last place in round 2 and round 3, broken using earlier rounds.
+candidates: A, B, C, D
+7: A
+3: B > C
+4: C
+1: D > B

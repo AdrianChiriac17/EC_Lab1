@@ -1,0 +1,49 @@
+# Build directories and CMake output
+/build/
+/out/
+/bin/
+/obj/
+cmake-build-*/
+CMakeFiles/
+CMakeCache.txt
+cmake_install.cmake
+compile_commands.json
+CTestTestfile.cmake
+
+# Compiled objects, libraries, executables and debug files
+*.o
+*.obj
+*.a
+*.lib
+*.so
+*.so.*
+*.dylib
+*.dll
+*.exe
+*.out
+*.pdb
+*.ilk
+*.d
+*.gch
+*.pch
+*.gcda
+*.gcno
+*.gcov
+/lab1
+
+# Editor caches and temporary files (share VS Code configuration)
+/.vs/
+/.vscode/ipch/
+*.VC.db
+*.VC.VC.opendb
+*.swp
+*.swo
+*~
+
+# OS metadata and local secrets
+.DS_Store
+Thumbs.db
+Desktop.ini
+.env
+.env.*
+!.env.example
