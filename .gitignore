@@ -29,7 +29,9 @@ CTestTestfile.cmake
 *.gcda
 *.gcno
 *.gcov
-/lab1
+# Extensionless Linux executables inside each lab's source folder
+/Lab1/lab1
+/Lab2/lab2
 
 # Editor caches and temporary files (share VS Code configuration)
 /.vs/

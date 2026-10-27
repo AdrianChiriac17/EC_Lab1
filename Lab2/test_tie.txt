@@ -1,0 +1,4 @@
+alice,120
+bob,150
+carol,150
+dave,110
