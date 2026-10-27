@@ -1,5 +1,0 @@
-# Example from the lab statement: plurality would elect A, IRV elects B
-candidates: A, B, C
-4: A > B > C
-3: B > C > A
-2: C > B > A

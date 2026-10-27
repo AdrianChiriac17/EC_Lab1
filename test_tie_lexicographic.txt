@@ -1,8 +1,0 @@
-# B and D both have 2 votes in rounds 1 and 2.
-# C is eliminated first; D loses the round-2 tie by name, despite being listed first.
-# A and B tie in round 3; earlier vote totals eliminate B. A wins with 8 votes.
-candidates: D, C, A, B
-3: A
-2: B > A
-2: D > B > A
-1: C > A

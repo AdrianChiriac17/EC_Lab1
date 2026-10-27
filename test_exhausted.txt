@@ -1,8 +1,0 @@
-# Partial rankings: some ballots become exhausted.
-# C wins with 7 of the 13 still-valid ballots (7 of 15 would NOT be a majority).
-candidates: A, B, C, D
-6: A
-2: B
-2: B > C
-3: C > B
-2: D > C
