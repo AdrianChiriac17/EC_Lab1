@@ -31,14 +31,6 @@ struct Result
     vector<double> gains;
 };
 
-string trim(const string& s)
-{
-    size_t start = s.find_first_not_of(" \t\r\n");
-    if (start == string::npos) return "";
-    size_t end = s.find_last_not_of(" \t\r\n");
-    return s.substr(start, end - start + 1);
-}
-
 int readCSV(istream& input, DinnerData& data)
 {
     csv::CSVFormat format;
@@ -51,20 +43,28 @@ int readCSV(istream& input, DinnerData& data)
     auto reader = csv::CSVReader::try_open(input, error, format);
     if (!reader)
         return 1;
+
     vector<string> header = reader->get_col_names();
     if (header.size() < 2 || header[0] != "friend")
     {
+        //at least one restaurant and the first column must be "friend"
         return 1;
     }
 
     for (size_t j = 1; j < header.size(); j++)
     {
         if (header[j].empty())
-            return 1;
-        if (find(data.restaurants.begin(), data.restaurants.end(), header[j]) != data.restaurants.end())
         {
+            //no empty headers
             return 1;
         }
+            
+        if (find(data.restaurants.begin(), data.restaurants.end(), header[j]) != data.restaurants.end())
+        {
+            //no duplicate headers
+            return 1;
+        }
+
         data.restaurants.push_back(header[j]);
     }
 
@@ -72,27 +72,36 @@ int readCSV(istream& input, DinnerData& data)
     while (reader->try_read_row(row, error))
     {
         if (row.size() != header.size())
+        {
+            //row length mismatch
             return 1;
+        }
 
         Friend f;
-        f.name = trim(row[0].get<string>());
+        f.name = row[0].get<string>();
         if (f.name.empty())
+        {
+            //friend name cannot be empty
             return 1;
+        }
 
         for (size_t j = 1; j < header.size(); j++)
         {
-            istringstream value(trim(row[j].get<string>()));
+            istringstream value(row[j].get<string>());
             double number;
 
             if (!(value >> number) || !value.eof() || !isfinite(number))
+            {
+                //number not double or not finite (NaN or Inf)
                 return 1;
+            }
 
             f.values.push_back(number);
         }
         data.friends.push_back(f);
     }
 
-    return error || data.friends.empty() ? 1 : 0;
+    return error || data.friends.empty();
 }
 
 vector<double> calculateTotals(const DinnerData& data)
