@@ -10,6 +10,11 @@ cmake_install.cmake
 compile_commands.json
 CTestTestfile.cmake
 
+# Extensionless build outputs in any lab (keep directories and files with extensions)
+/Lab*/**/*
+!/Lab*/**/
+!/Lab*/**/*.*
+
 # Compiled objects, libraries, executables and debug files
 *.o
 *.obj
@@ -29,9 +34,6 @@ CTestTestfile.cmake
 *.gcda
 *.gcno
 *.gcov
-# Extensionless Linux executables inside each lab's source folder
-/Lab1/lab1
-/Lab2/lab2
 
 # Editor caches and temporary files (share VS Code configuration)
 /.vs/
