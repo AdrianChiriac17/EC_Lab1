@@ -1,0 +1,3 @@
+# Two ordered matches, TFT/AD=499/504; totals: TFT=998, AD=1008.
+ROUNDS=500
+PLAYERS=TitForTat,AlwaysDefect

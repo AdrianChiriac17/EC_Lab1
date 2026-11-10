@@ -1,0 +1,3 @@
+# Four players, 12 ordered matches; totals: AD=30, TFT=12, Grudger=12, TF2T=12.
+ROUNDS=1
+PLAYERS=TitForTat,Grudger,AlwaysDefect,TitForTwoTats

@@ -1,0 +1,2 @@
+ROUNDS=0
+PLAYERS=TitForTat,Grudger

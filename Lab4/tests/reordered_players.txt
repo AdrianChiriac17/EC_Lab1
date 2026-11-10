@@ -1,0 +1,3 @@
+# Display preserves this order, but ranking remains Grudger/TFT, TF2T, AD.
+ROUNDS=500
+PLAYERS=AlwaysDefect,TitForTwoTats,Grudger,TitForTat
